@@ -1,0 +1,86 @@
+<html>
+{% load static  %}
+	<head>
+	    <title>Web Scraping by Abhishek</title>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+	    <script>
+            {% if messages %}
+                {% for message in messages %}
+                    alert(message);
+                {% endfor %}
+            {% endif %}
+        </script>
+	</head>
+	<style type="text/css">
+
+	body{
+		background-color: #f2f2f2;
+	}
+
+
+table {
+    counter-reset: tableCount;     
+}
+.counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+}
+
+#hed{
+	width: 100%;
+}
+
+	</style>
+	<body>
+
+		  <div class="jumbotron" style="background-color:  #1a75ff;height: 30px;" id="hed">
+		  <center><h2 style="margin-top: -20px;color:white;" class="glyphicon glyphicon-shopping-cart">    Flipkart Scraping Platform</h2></center>
+          </div>
+
+		<div class="container">
+
+		<div class="scrap">
+			<form action="{% url 'hme' %}" method="POST">
+	    	{% csrf_token %}
+	        
+	        <h4>Please insert the valid link Eg: https://www.flipkart.com/mobiles/mi~brand/pr?sid=tyy,4io&otracker=nmenu_sub_Electronics_0_Mi</h4><br>
+	        <input type="text" name="url" style="width: 1000;height: 40" placeholder="Insert the link"><br>
+		<br>
+		<button class="btn btn-success">Submit</button>&ensp;<br><br><a style="font-size: 15px;" href="{% static '/data.csv' %}">Download file <p class="glyphicon glyphicon-save"></p></a>
+	    	</form>
+		</div>
+
+		<table 	width="200" class="table table-bordered table-hover table-striped">
+			<tr class="info">
+				<th>No:</th>
+				<th>Product name</th>
+				<th>Price</th>
+				<th>Rating</th>
+				<th>Link</th>
+			</tr>
+			<tr>
+				{% for item in mylist %}
+				<td class="counterCell"></td>
+				<td>
+				{{item.0}}
+
+				</td>
+				<td style="width:400px">
+					{{item.1}}
+				</td>
+				<td>
+					<p>{{item.2}} &#9733;</p>
+				</td>
+				<td>
+					<a href={{item.3}} target="_blank">click here</a>
+				</td>
+
+			<tr>
+			{% endfor %}	
+		</table>
+		</div> 
+	    
+	</body>
+</html>
