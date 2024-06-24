@@ -25,7 +25,7 @@ SECRET_KEY = 'wa810zt$=t+ei!_tv7m+kur^l=vyh)a%9^v=jq@!_o64yo5bck'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -120,10 +120,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+import os
 STATICFILES_DIRS=(
     os.path.join(BASE_DIR,'static'),
     )
-STATIC_ROOT=os.path.join(BASE_DIR,'')
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles_build', 'static')
 
 
 MEDIA_URL='/media/'
@@ -131,3 +132,4 @@ MEDIA_URL='/media/'
 #     os.path.join(BASE_DIR,'media'),
 #     )
 # MEDIA_ROOT=os.path.join(BASE_DIR,'')
+

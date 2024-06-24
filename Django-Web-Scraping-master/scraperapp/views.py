@@ -26,7 +26,9 @@ def view(request):
 		if 'https://' not in url:
 			messages.error(request, "Error")
 		else:
-			page_url = requests.get(url)
+			headers={"User-Agent":
+		        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"}
+			page_url = requests.get(url,headers=headers)
 			pagesoup = soup(page_url.text, 'html.parser')
 			
 			main_class = pagesoup.find_all('div', {'class': '_75nlfW'})
