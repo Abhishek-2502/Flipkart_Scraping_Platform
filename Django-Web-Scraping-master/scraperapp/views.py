@@ -29,13 +29,13 @@ def view(request):
 			messages.error(request, "Error")
 		else:
 			proxies={
-				"http": "http://bgcciqoq-rotate:nb8q056p7ty3@p.webshare.io:80/",
-				"https": "http://bgcciqoq-rotate:nb8q056p7ty3@p.webshare.io:80/"
+				"http": "http://bgcciqoq-rotate:xxxxxx@p.webshare.io:80/",		#Add your proxy if needed
+				"https": "http://bgcciqoq-rotate:xxxxxxx@p.webshare.io:80/"
 			}
 			headers={"User-Agent":
 		        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"}
-			# page_url = requests.get(url,proxies=proxies)
-			# page_url = requests.get(url,headers=headers)
+			# page_url = requests.get(url,proxies=proxies)       #Uncomment this if requests is blocked
+			# page_url = requests.get(url,headers=headers)       #Uncomment this if requests is blocked
 			page_url = requests.get(url)
 			
 			page_url_text = requests.get(url).text
