@@ -29,8 +29,8 @@ def view(request):
 			messages.error(request, "Error")
 		else:
 			proxies={
-				"http": "http://bgcciqoq-rotate:xxxxxx@p.webshare.io:80/",		#Add your proxy if needed
-				"https": "http://bgcciqoq-rotate:xxxxxxx@p.webshare.io:80/"
+				"http": "http://xxxxxxxxx-rotate:xxxxxx@p.webshare.io:80/",		#Add your proxy if needed
+				"https": "http://xxxxxx-rotate:xxxxxxx@p.webshare.io:80/"
 			}
 			headers={"User-Agent":
 		        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"}
