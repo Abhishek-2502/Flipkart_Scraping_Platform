@@ -62,7 +62,7 @@ Follow these steps to get the Flipkart Scraping Platform up and running on your 
 
 4. View the product details in the displayed table.
 
-5. To download the data, click on the 'Download' button.
+5. To download the data, click on the 'Download file' button.
 
 ## 🔄 Updating for Flipkart Changes
 
