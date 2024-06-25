@@ -34,7 +34,7 @@ Follow these steps to get the Flipkart Scraping Platform up and running on your 
 
 1. **Clone the repository**:
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/Abhishek-2502/Flipkart_Scraping_Platform.git
     ```
 
 2. **Navigate to the project directory**:
