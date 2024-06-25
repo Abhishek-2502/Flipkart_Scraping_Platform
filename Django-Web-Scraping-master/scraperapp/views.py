@@ -3,6 +3,8 @@ from django.views.generic import TemplateView
 from django.contrib import messages 
 
 # Create your views here.
+import collections
+collections.Callable = collections.abc.Callable
 from bs4 import BeautifulSoup as soup
 import csv
 from django.conf import settings
@@ -26,30 +28,62 @@ def view(request):
 		if 'https://' not in url:
 			messages.error(request, "Error")
 		else:
+			proxies={
+				"http": "http://bgcciqoq-rotate:nb8q056p7ty3@p.webshare.io:80/",
+				"https": "http://bgcciqoq-rotate:nb8q056p7ty3@p.webshare.io:80/"
+			}
 			headers={"User-Agent":
 		        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"}
-			page_url = requests.get(url,headers=headers)
-			pagesoup = soup(page_url.text, 'html.parser')
+			# page_url = requests.get(url,proxies=proxies)
+			# page_url = requests.get(url,headers=headers)
+			page_url = requests.get(url)
 			
-			main_class = pagesoup.find_all('div', {'class': '_75nlfW'})
+			page_url_text = requests.get(url).text
+			print(page_url_text)
+
+			pagesoup = soup(page_url.text, 'html.parser')
+
+			main_class = pagesoup.find_all('a', {'class': 'CGtC98'})
+
+			print("hello1")
+			print(pagesoup.prettify())
+			print("hello2")
+
+
 			for i in main_class:
+				#Change Class and tags according to the latest website tags and classes
+				try:
+					pdt_name_elem = i.find('div', {'class': 'KzDlHZ'})
+					pdt_price_elem = i.find('div', {'class': 'Nx9bqj _4b5DiR'})
+					pdt_rate_elem = i.find('span', {'class': 'Y1HWO0'})
+					# pdt_url = i.find('a', {'class': 'CGtC98'})['href'] 
+					pdt_url_elem = i.get('href')
+					
+					print(f"Element: {i}")
+					print(f"Name element: {pdt_name_elem}")
+					print(f"Price element: {pdt_price_elem}")
+					print(f"Rate element: {pdt_rate_elem}")
+					print(f"URL element: {pdt_url_elem}")
+					
+					if not all([pdt_name_elem, pdt_price_elem, pdt_rate_elem, pdt_url_elem]):
+						raise ValueError("One or more elements not found")
 
-				#Change Class and tags according to latest website tags and classes
-				pdt_name= i.find('div', {'class': 'KzDlHZ'}).text.replace(',', '').replace('\r', '').replace('\n', '') #
-				pdt_price = i.find('div', {'class': 'Nx9bqj _4b5DiR'}).text.replace(',', '').replace('\r', '').replace('\n', '') # 
-				pdt_rate = i.find('span', {'class': 'Y1HWO0'}).text.replace(',', '').replace('\r', '').replace('\n', '') #
-				pdt_url = i.find('a', {'class': 'CGtC98'})['href'] #
-				pdt_main_url = 'https://www.flipkart.com'+pdt_url
+					pdt_name = pdt_name_elem.text.replace(',', '').replace('\r', '').replace('\n', '')
+					pdt_price = pdt_price_elem.text.replace(',', '').replace('\r', '').replace('\n', '')
+					pdt_rate = pdt_rate_elem.text.replace(',', '').replace('\r', '').replace('\n', '')
+					pdt_main_url = 'https://www.flipkart.com' + pdt_url_elem
 				
-				pdt_price_Int=pdt_price[1:]
+					pdt_price_Int=pdt_price[1:]
 
-				full_name.append(pdt_name)
-				full_price.append(pdt_price_Int)
-				full_rate.append(pdt_rate)
-				full_url.append(pdt_main_url)
+					full_name.append(pdt_name)
+					full_price.append(pdt_price_Int)
+					full_rate.append(pdt_rate)
+					full_url.append(pdt_main_url)
 
-				file.write(pdt_name+','+str(pdt_price_Int)+','+pdt_rate+','+pdt_main_url+'\n')
+					file.write(pdt_name+','+str(pdt_price_Int)+','+pdt_rate+','+pdt_main_url+'\n')
 
+				except Exception as e:
+					print(f"Not found: {str(e)}")
 		mylist=zip(full_name,full_price,full_rate,full_url)
 		file.close()
 		return render(request,'index.html',{'mylist':mylist})
