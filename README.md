@@ -24,7 +24,9 @@
 
 ## 📸 Screenshots
 
-*(Add screenshots of your application here)*
+![](Website_Images/ss1.png)
+
+![](Website_Images/ss2.png)
 
 ## 🛠️ Installation
 
