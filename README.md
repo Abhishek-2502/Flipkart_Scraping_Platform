@@ -24,9 +24,9 @@
 
 ## 📸 Screenshots
 
-![](Website_Images/ss1.png)
+![](Images/ss1.png)
 
-![](Website_Images/ss2.png)
+![](Images/ss2.png)
 
 ## 🛠️ Installation
 
