@@ -43,11 +43,16 @@ Follow these steps to get the Flipkart Scraping Platform up and running on your 
     ```
 
 3. **Install the required packages**:
+   django, bs4, requests
+
+   OR
+   
     ```bash
     pip install -r requirements.txt
     ```
+5. Update the CSV file path in view.py and make the other suggested changes in the file.
 
-4. **Run the development server**:
+6. **Run the development server**:
     ```bash
     python manage.py runserver
     ```
@@ -74,7 +79,7 @@ Flipkart's HTML structure may change, which can cause the scraper to malfunction
 
 3. Update the relevant sections in `views.py` with the new classes and tags.
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions to enhance Flipkart Scraping Platform! If you want to contribute:
 
@@ -98,6 +103,6 @@ We welcome contributions to enhance Flipkart Scraping Platform! If you want to c
 5. Open a pull request.
    
 
-## 🙏 Author
+## Author
 
 Abhishek Rajput
