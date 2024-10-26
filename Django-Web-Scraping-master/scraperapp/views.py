@@ -32,11 +32,13 @@ def view(request):
 				"http": "http://xxxxxxxxx-rotate:xxxxxx@p.webshare.io:80/",		#Add your proxy if needed
 				"https": "http://xxxxxx-rotate:xxxxxxx@p.webshare.io:80/"
 			}
-			headers={"User-Agent":
-		        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"}
+			headers={
+				'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+				'Accept-Language': 'en-us,en;q=0.5'
+			}
 			# page_url = requests.get(url,proxies=proxies)       #Uncomment this if requests is blocked
-			# page_url = requests.get(url,headers=headers)       #Uncomment this if requests is blocked
-			page_url = requests.get(url)
+			page_url = requests.get(url,headers=headers)       #Uncomment this if requests is blocked
+			# page_url = requests.get(url)
 			
 			page_url_text = requests.get(url).text
 			print(page_url_text)
