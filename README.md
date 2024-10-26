@@ -50,7 +50,7 @@ Follow these steps to get the Flipkart Scraping Platform up and running on your 
     ```bash
     pip install -r requirements.txt
     ```
-5. Update the CSV file path in view.py and make the other suggested changes in the file.
+5. Update the CSV file path in Flipkart_Scraping_Platform/Django-Web-Scraping-master/scraperapp/views.py and make the other suggested changes in the file.
 
 6. **Run the development server**:
     ```bash
